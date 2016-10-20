@@ -2,7 +2,7 @@
 	"name": "balancer/bors-rss",
 	"type": "librarys",
 	"description": "RSS creator form BORS© Framework",
-	"keywords": ["RSS", "php", "library", "BORS©"],
+	"keywords": ["rss", "php", "library", "bors"],
 	"homepage": "http://bors.balancer.ru/",
 	"license": "GPL-3.0",
 	"authors": [
