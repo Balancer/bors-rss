@@ -18,9 +18,6 @@ class base_rss extends base_page
 
 	function render($rss)
 	{
-		if(!class_exists('UniversalFeedCreator'))
-			throw new Exception("Use: composer require openpsa/universalfeedcreator");
-
 //		$type = "ATOM1.0";
 		$type = "RSS2.0";
 

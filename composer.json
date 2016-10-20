@@ -19,8 +19,9 @@
 	},
 
 	"require": {
+		"balancer/bors-core": "dev-default",
 		"openpsa/universalfeedcreator": "*",
-		"balancer/bors-core": "dev-default"
+		"suin/php-rss-writer": "*"
 	},
 
 	"prefer-stable": true,
