@@ -1,0 +1,15 @@
+{
+	"require": {
+		"openpsa/universalfeedcreator": "*",
+		"balancer/bors-core": "dev-default"
+	},
+
+	"prefer-stable": true,
+	"minimum-stability": "dev",
+
+	"autoload": {
+		"psr-4": {
+			"B2\\": "src/"
+		}
+	}
+}
