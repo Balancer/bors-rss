@@ -8,6 +8,9 @@
 	"minimum-stability": "dev",
 
 	"autoload": {
+		"classmap": [
+			"classes/"
+		],
 		"psr-4": {
 			"B2\\": "src/"
 		}
