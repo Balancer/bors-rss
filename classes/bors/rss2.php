@@ -100,8 +100,6 @@ class bors_rss2 extends bors_rss
 		return $result;
 	}
 
-	function item_image($object) { return $object->get('image'); }
-
 	function item_author($object)
 	{
 		$a = $object->get('rss_author');
@@ -116,11 +114,17 @@ class bors_rss2 extends bors_rss
 		return NULL;
 	}
 
+	function item_body($object) { return $object->body(); }
+
 	function item_categories($item)
 	{
 		$cats = $item->get('rss_categories', []);
 		return array_merge($cats, array_map('trim', explode(",", $this->item_keywords_string($item))));
 	}
+
+	function item_image($object) { return $object->get('image'); }
+	function item_title($object) { return $object->title(); }
+	function item_url($object) { return $object->url(); }
 }
 
 class bal_suin_rsswriter_channel extends Channel
