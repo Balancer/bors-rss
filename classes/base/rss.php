@@ -23,7 +23,7 @@ class base_rss extends base_page
 
 		$feed = new UniversalFeedCreator();
 		$feed->useCached($type, '/tmp/bors-rss-'.md5($rss->url()).'.xml', config('rss_static_lifetime'));
-		$feed->encoding = 'UTF-8';
+//		$feed->encoding = 'UTF-8';
 		$feed->title = $rss->rss_title();
 		$feed->description = $rss->rss_description();
 		$feed->link = $rss->main_url();
@@ -96,7 +96,7 @@ class base_rss extends base_page
 		}
 
 		$result = $feed->createFeed($type);
-		@header("Content-Type: ".$feed->contentType."; charset=".$feed->encoding);
+		@header("Content-Type: application/xml; charset=utf-8");
 		return $result;
 	}
 
