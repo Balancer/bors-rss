@@ -12,10 +12,15 @@ class bors_rss extends base_rss
 
 	function rss_items()
 	{
-		return bors_find_all($this->items_class_name(), array_merge(array(
+		$items = bors_find_all($this->items_class_name(), array_merge(array(
 			'order' => $this->order(),
 			'limit' => $this->limit(),
 		), $this->where()));
+
+		if(method_exists($this, 'on_items_load'))
+			$this->on_items_load($items);
+
+		return $items;
 	}
 
 //	function main_url() { return $this->called_url(); }

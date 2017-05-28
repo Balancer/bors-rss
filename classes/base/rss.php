@@ -61,7 +61,7 @@ class base_rss extends base_page
 				$item->description = $desc;
 
 			$item->descriptionHtmlSyndicated = true;
-			$item->date = intval($o->create_time());//$rss->item_rss_gmtime($o);
+			$item->date = $o->create_time() - 86400*3;//$rss->item_rss_gmtime($o);
 			$item->source = $rss->rss_source_url();
 			$owner = $o->get('owner');
 			if($owner)
@@ -131,12 +131,15 @@ class base_rss extends base_page
 		}
 
 		$html = $object->rss_body();
+
+		$html = preg_replace('! src="//!', ' src="http://', $html);
+
 		if(!$strip || bors_strlen($html) <= $strip)
 			return $html;
 
 		include_once("inc/texts.php");
 		$html = strip_text($html, $strip);
-		$html .= "<br /><br /><a href=\"".$object->url().ec("\">Дальше »»»");
+		$html .= "<br /><br /><a href=\"".preg_replace('!^//!', 'http://', $object->url()).ec("\">Дальше »»»");
 
 		return $html;
 	}
