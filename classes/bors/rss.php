@@ -8,14 +8,14 @@ class bors_rss extends base_rss
 
 	function _limit_def() { return 20; }
 	function _order_def() { return '-create_time'; }
-	function _where_def() { return array(); }
+	function _where_def() { return ['by_id' => true]; }
 
 	function rss_items()
 	{
-		$items = bors_find_all($this->items_class_name(), array_merge(array(
+		$items = bors_find_all($this->items_class_name(), array_merge([
 			'order' => $this->order(),
 			'limit' => $this->limit(),
-		), $this->where()));
+		], $this->where()));
 
 		if(method_exists($this, 'on_items_load'))
 			$this->on_items_load($items);
