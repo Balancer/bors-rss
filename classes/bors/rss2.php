@@ -9,7 +9,8 @@ if(!class_exists('\\Suin\\RSSWriter\\Feed'))
 
 class bors_rss2 extends bors_rss
 {
-	function render_engine() { return 'bors_rss2'; }
+	function render_engine() { return get_called_class(); }
+	function _xml_item_class_def() { return \bal_suin_rsswriter_item::class; }
 
 	function render($rss)
 	{
@@ -54,7 +55,10 @@ class bors_rss2 extends bors_rss
 */
 		foreach($rss->rss_items() as $o)
 		{
-			$item = new bal_suin_rsswriter_item();
+			$xml_item_class = $this->xml_item_class();
+			$item = new $xml_item_class();
+			$item->rss  = $rss;
+			$item->item = $o;
 			$item->title($rss->item_title($o))
 				->url($rss->item_url($o))
 				->guid($rss->item_guid($o), true);
@@ -87,7 +91,7 @@ class bors_rss2 extends bors_rss
 			}
 
 			if($rss->get('is_yandex'))
-				$item->yandex_full($o->html());
+				$item->yandex_full($this->item_yandex_full($o));
 
 			if($g = $o->get('rss_yandex_genre'))
 				$item->yandex_genre($g);
@@ -115,6 +119,7 @@ class bors_rss2 extends bors_rss
 	}
 
 	function item_body($object) { return $object->body(); }
+	function item_yandex_full1($object) { return "WWW:".$object->html(); }
 
 	function item_categories($item)
 	{
