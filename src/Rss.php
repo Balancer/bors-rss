@@ -3,7 +3,7 @@
 namespace B2;
 
 
-class Rss extends \bors_rss
+class Rss extends \bors_rss2
 {
 
 }
