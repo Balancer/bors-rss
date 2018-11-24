@@ -83,7 +83,10 @@ class bors_rss2 extends bors_rss
 			{
 				$thumb = $image->thumbnail('300x300');
 				// <link rel="enclosure" type="image/jpeg" href="image_url_here" />
-	 			$item->enclosure($thumb->url(), $thumb->size(), $image->mime_type());
+				$url = $thumb->url();
+				if(preg_match('!^//!', $url) && !empty($_SERVER['REQUEST_SCHEME']))
+					$url = $_SERVER['REQUEST_SCHEME'] . ':' . $url;
+	 			$item->enclosure($url, $thumb->size(), $image->mime_type());
 			}
 
 			if($rss->get('is_yandex'))
