@@ -122,7 +122,7 @@ class bors_rss2 extends bors_rss
 	}
 
 	function item_body($object) { return $object->body(); }
-	function item_yandex_full1($object) { return "WWW:".$object->html(); }
+	function item_yandex_full($object) { return $object->html(); }
 
 	function item_categories($item)
 	{
